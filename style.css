@@ -1,3 +1,4 @@
+.short{text-align:center}.short video{display:block;width:100%;max-width:360px;height:auto;aspect-ratio:9/16;margin:16px auto;border-radius:14px;background:#000;border:1px solid #3a3020}
 *{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
 body{margin:0;font-family:Poppins,system-ui,sans-serif;font-size:17px;line-height:1.65;color:#ece6d6;background:#0b0b0d}
 body.en{background:#14080a}
