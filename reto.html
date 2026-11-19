@@ -387,7 +387,9 @@ function wireReminders(){
   const title='Tu Salmo del día · Reto de 28 días', det='Abre tu día del reto: '+WEB;
   document.getElementById('gcal').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(title)+
     '&details='+encodeURIComponent(det)+'&dates='+st+'T'+h+'00/'+st+'T'+end+'00&ctz='+encodeURIComponent(tz)+'&recur='+encodeURIComponent('RRULE:FREQ=DAILY;COUNT=28');
+  document.getElementById('gcal').addEventListener('click',()=>{ try{ window.goatcounter&&goatcounter.count({path:'reto-calendario-google',title:'Reto · añade a Google Calendar',event:true}); }catch(_){} });
   document.getElementById('ics').onclick = ()=>{
+    try{ window.goatcounter&&goatcounter.count({path:'reto-calendario-iphone',title:'Reto · añade a iPhone / otro calendario',event:true}); }catch(_){}
     const ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Amen Hallelujah Official//Reto 28//ES','BEGIN:VEVENT','UID:reto28-'+st+'@amenhallelujahofficial',
       'DTSTAMP:'+new Date().toISOString().replace(/[-:]/g,'').split('.')[0]+'Z','DTSTART:'+st+'T'+h+'00','DURATION:PT10M','RRULE:FREQ=DAILY;COUNT=28',
       'SUMMARY:'+title,'DESCRIPTION:'+det,'URL:'+WEB,'BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:'+title,'TRIGGER:PT0M','END:VALARM','END:VEVENT','END:VCALENDAR'].join('\r\n');
