@@ -356,7 +356,17 @@ function ready(){
   ${reminders()}
   <button class="btn" id="start">Empezar mi Día 1</button>`);
   wireReminders();
-  document.getElementById('start').onclick = ()=>{ S.start = S.groupStart || iso(today()); save(); dayView(); };
+  document.getElementById('start').onclick = async ()=>{
+    // Si ha escrito su email y aún no lo ha enviado, lo apuntamos también al pulsar el botón principal
+    const e=(document.getElementById('email').value||'').trim();
+    if(e && S.email!==e){
+      const ok=document.getElementById('ok').checked, m=document.getElementById('emmsg'); m.hidden=false;
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)){ m.className='pending'; m.textContent='Escribe un email válido, por ejemplo nombre@gmail.com.'; m.scrollIntoView({block:'center'}); return; }
+      if(!ok){ m.className='pending'; m.textContent='Marca la casilla para aceptar recibir el reto por email.'; m.scrollIntoView({block:'center'}); return; }
+      const sent = await enviarEmail(e);
+      if(!sent){ m.scrollIntoView({block:'center'}); return; }
+    }
+    S.start = S.groupStart || iso(today()); save(); dayView(); };
 }
 
 function reminders(){
@@ -389,15 +399,20 @@ function wireReminders(){
     m.hidden=false;
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)){ m.className='pending'; m.textContent='Escribe un email válido, por ejemplo nombre@gmail.com.'; return; }
     if(!ok){ m.className='pending'; m.textContent='Marca la casilla para aceptar recibir el reto por email.'; return; }
-    const b=document.getElementById('em'); b.disabled=true; m.className='pending'; m.textContent='Enviando…';
-    const a=S.answers, clean=x=>String(x||'').replace(/[|\n]/g,' ');
-    const datos=['v1','alta',e,a.busca,a.tiempo,a.plataforma,a.hora,a.con].map(clean).join('|');
-    const fd=new FormData(); fd.append(GFIELD,datos);
-    fetch(GFORM,{method:'POST',mode:'no-cors',body:fd}).then(()=>{
-      S.email=e; save(); m.className='ok'; m.textContent='¡Listo! Hoy mismo te llegará tu Día 1 a '+e+'. Si no lo ves, mira en Promociones o Spam.';
-      try{ window.goatcounter&&goatcounter.count({path:'reto-email-ok',event:true}); }catch(_){}
-    }).catch(()=>{ b.disabled=false; m.className='pending'; m.textContent='No hay conexión. Inténtalo de nuevo en un momento.'; });
+    enviarEmail(e);
   };
+}
+function enviarEmail(e){
+  const m=document.getElementById('emmsg'), b=document.getElementById('em'); m.hidden=false;
+  b.disabled=true; m.className='pending'; m.textContent='Enviando…';
+  const a=S.answers, clean=x=>String(x||'').replace(/[|\n]/g,' ');
+  const datos=['v1','alta',e,a.busca,a.tiempo,a.plataforma,a.hora,a.con].map(clean).join('|');
+  const fd=new FormData(); fd.append(GFIELD,datos);
+  return fetch(GFORM,{method:'POST',mode:'no-cors',body:fd}).then(()=>{
+    S.email=e; save(); m.className='ok'; m.textContent='¡Listo! Hoy mismo te llegará tu Día 1 a '+e+'. Si no lo ves, mira en Promociones o Spam.';
+    try{ window.goatcounter&&goatcounter.count({path:'reto-email-ok',event:true}); }catch(_){}
+    return true;
+  }).catch(()=>{ b.disabled=false; m.className='pending'; m.textContent='No hay conexión. Inténtalo de nuevo en un momento.'; return false; });
 }
 
 function dayView(){
