@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Reto 28 días con los Salmos – Amen Hallelujah Official</title>
+<meta name="description" content="Reto gratis de 28 días con los Salmos cantados: escucha cada día unos minutos y apréndete de memoria los Salmos 100, 23, 121 y 91. Empieza cuando quieras.">
+<link rel="icon" href="img/favicon.png">
+<meta property="og:title" content="Reto 28 días con los Salmos">
+<meta property="og:description" content="Reto gratis de 28 días con los Salmos cantados: escucha cada día unos minutos y apréndete de memoria los Salmos 100, 23, 121 y 91. Empieza cuando quieras.">
+<meta property="og:image" content="img/logo.png">
+<script data-goatcounter="https://amenhallelujahofficial.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,700;1,500&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: una sola columna tipo app (máx. 560px), pantallas que se suceden como en las apps de reto; estilo de la web AHO (noche + oro) */
+:root{
+  --bg:#0b0b0d; --card:#15130f; --line:#2f281b; --fg:#ece6d6; --mute:#a89f8a;
+  --gold:#d6af55; --gold-hi:#f0ce6e; --gold-lo:#96661c; --ok:#7fbf7a; --ink:#111;
+  --f-display:Lora,Georgia,serif; --f-body:Poppins,system-ui,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{background:var(--bg)}
+body{margin:0;font-family:var(--f-body);font-size:16px;line-height:1.6;color:var(--fg);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.app{max-width:560px;margin:0 auto;padding-block:12px 48px}
+a{color:var(--gold)}
+h1,h2,h3{font-family:var(--f-display);color:var(--gold);line-height:1.2;text-wrap:balance;margin:.2em 0}
+h1{font-size:clamp(30px,8vw,44px)} h2{font-size:clamp(24px,6vw,30px)} h3{font-size:19px}
+p{margin:.5em 0}
+.draft{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;justify-content:space-between;font-size:12.5px;color:var(--mute);
+  border:1px dashed var(--line);border-radius:10px;padding:6px 10px;margin-bottom:14px}
+.draft b{color:var(--gold);letter-spacing:.08em}
+.draft button{font:inherit;font-size:12px;background:none;border:1px solid var(--line);color:var(--fg);border-radius:999px;padding:2px 10px;cursor:pointer}
+.top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.top img{width:38px;height:38px}
+.top span{font-family:var(--f-display);font-weight:700;color:var(--gold);font-size:15px}
+.screen{animation:in .35s ease}
+@keyframes in{from{opacity:.4;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.screen{animation:none}.spin{animation:none!important}}
+.hero{text-align:center;padding:26px 0 6px;background:radial-gradient(ellipse at center top,#3b2c10 0,transparent 62%)}
+.kicker{text-transform:uppercase;letter-spacing:.14em;font-size:12px;color:var(--gold)}
+.free{display:inline-block;border:1px solid var(--gold);color:var(--gold);border-radius:999px;padding:2px 12px;font-weight:600;font-size:14px;margin:8px 0}
+.lead{font-size:18px;color:#f3ead2}
+.verse{font-family:var(--f-display);font-style:italic;color:#f3ead2;font-size:18px}
+.verse small{display:block;font-family:var(--f-body);font-style:normal;color:var(--mute);font-size:13px;margin-top:4px}
+.btn{display:block;width:100%;text-align:center;background:linear-gradient(180deg,var(--gold-hi),var(--gold) 55%,#b8902f);color:var(--ink);
+  border:0;font:600 17px var(--f-body);padding:14px 20px;border-radius:999px;cursor:pointer;text-decoration:none;margin-top:14px}
+.btn.ghost{background:none;color:var(--gold);border:1px solid var(--gold)}
+.btn:focus-visible,.opt:focus-visible,.task input:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--gold-hi);outline-offset:2px}
+.how{display:grid;gap:10px;margin:10px 0 18px}
+.qf{border:0;padding:0;margin:0 0 22px;min-width:0}
+.qf .q{font-size:17px;margin-bottom:10px;padding:0}
+.qf .opts{grid-template-columns:1fr 1fr}
+.qf .opts.three{grid-template-columns:repeat(3,1fr)}
+.qf .opt{flex-direction:column;justify-content:center;text-align:center;gap:4px;min-height:96px;padding:12px 8px}
+.qf .opt .ic{font-size:28px}
+.qf .opt span{min-width:0}
+.qf .opt small{font-size:12px;line-height:1.35}
+.qf .opt.logo{height:auto;min-height:96px}
+.row45{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:16px;align-items:start;margin-bottom:22px}
+.row45 .qf{margin:0}
+.row45 .q{font-size:17px;height:2.7em;display:flex;align-items:flex-end;margin-bottom:8px;float:left;width:100%}
+.row45 .qf>.opts,.row45 .qf>.timeinput{clear:both}
+.row45 .timeinput{font-size:16px;padding:0 2px;height:78px}
+.timeinput{position:relative;display:flex;align-items:center;justify-content:center}
+.timeinput::-webkit-date-and-time-value{text-align:center;margin:0 auto}
+.timeinput::-webkit-datetime-edit{flex:none;margin:0 auto}
+.timeinput::-webkit-calendar-picker-indicator{position:absolute;inset:0;width:auto;height:auto;opacity:0;cursor:pointer}
+.row45 .opts.three{grid-template-columns:repeat(3,1fr);gap:6px}
+.row45 .opt{min-height:78px;padding:6px 4px;gap:2px;font-size:12.5px;line-height:1.25}
+.row45 .opt .ic{font-size:20px}
+.qf .opt.logo img{max-height:34px}
+.qf .opt.logo[data-v="apple"] img{max-height:25px}
+.bens{list-style:none;padding:0;margin:8px 0;display:grid;gap:6px}
+.bens li{display:block;position:relative;padding-left:32px}
+.bens li::before{content:"✓";position:absolute;left:0;top:0;width:22px;height:22px;border-radius:50%;background:#3fa34d;color:#fff;font-weight:700;font-size:14px;display:grid;place-items:center;margin-top:3px}
+.bens b{color:var(--fg)}
+.how div{display:flex;gap:12px;align-items:flex-start}
+.how b.n{flex:none;width:28px;height:28px;border-radius:50%;border:1px solid var(--gold);color:var(--gold);display:grid;place-items:center;font-size:14px}
+.bar{height:6px;background:var(--line);border-radius:6px;overflow:hidden;margin:6px 0 18px}
+.bar i{display:block;height:100%;background:var(--gold);transition:width .3s}
+.q{font-family:var(--f-display);font-size:24px;color:var(--fg);margin:4px 0 14px;text-wrap:balance}
+.opts{display:grid;gap:10px}
+.opts.two{grid-template-columns:1fr 1fr}
+.opt{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);color:var(--fg);
+  border-radius:14px;padding:14px 16px;font:500 16px var(--f-body);cursor:pointer;transition:border-color .2s}
+.opt:hover,.opt.on{border-color:var(--gold)}
+.opt.on{background:#2a2312;box-shadow:0 0 0 1px var(--gold) inset}
+.opt .ic{font-size:22px;flex:none}
+.opt small{display:block;color:var(--mute);font-weight:400;font-size:13px}
+.opt.logo{justify-content:center;height:64px}
+.opt.logo img{max-height:30px;max-width:100%}
+.timeinput{width:100%;font:600 28px var(--f-body);text-align:center;background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:14px;padding:12px}
+.center{text-align:center}
+.spin{width:64px;height:64px;border-radius:50%;border:3px solid var(--line);border-top-color:var(--gold);margin:36px auto 18px;animation:sp 1s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.steps{list-style:none;padding:0;margin:0 auto;max-width:330px;text-align:left}
+.steps li{padding:4px 0;color:var(--mute);transition:color .3s}
+.steps li.done{color:var(--fg)} .steps li.done::before{content:"✓ ";color:var(--gold)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px}
+.summary{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:15px}
+.summary dt{color:var(--mute)} .summary dd{margin:0}
+.ladder{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}
+.ladder div{text-align:center;border:1px solid var(--line);border-radius:12px;padding:8px 4px}
+.ladder b{display:block;font-family:var(--f-display);color:var(--gold);font-size:22px}
+.ladder span{font-size:12px;color:var(--mute)}
+.rem{display:grid;gap:10px;margin-top:12px}
+.rem .card{display:grid;gap:8px}
+.rem h3{display:flex;align-items:center;gap:8px;font-family:var(--f-body);font-size:16px;color:var(--fg);margin:0}
+.rem p{font-size:14px;color:var(--mute);margin:0}
+.rem input[type=email]{width:100%;font:16px var(--f-body);background:#0f0e0b;color:var(--fg);border:1px solid var(--line);border-radius:10px;padding:10px}
+.rem label.chk{display:flex;gap:8px;font-size:13px;color:var(--mute);align-items:flex-start}
+.mini{font:600 15px var(--f-body);background:none;border:1px solid var(--gold);color:var(--gold);border-radius:999px;padding:9px 14px;cursor:pointer;text-decoration:none;text-align:center}
+.pending{font-size:12px;color:var(--gold-lo);border:1px dashed var(--gold-lo);border-radius:8px;padding:4px 8px}
+.okmsg{font-size:14px;color:var(--ok)}
+.dayhead{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin:6px 0 4px}
+.dayhead .big{font-family:var(--f-display);font-size:40px;color:var(--gold);line-height:1}
+.dayhead .big small{font-size:18px;color:var(--mute)}
+.streak{text-align:right;font-size:14px;color:var(--mute)}
+.streak b{display:block;font-size:22px;color:var(--fg)}
+.tasks{display:grid;gap:10px;margin:14px 0}
+.task{display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.task.done{border-color:#4a3d1f}
+.task input[type=checkbox]{appearance:none;width:26px;height:26px;border:2px solid var(--gold);border-radius:50%;margin:2px 0 0;cursor:pointer;display:grid;place-items:center}
+.task input[type=checkbox]:checked{background:var(--gold)}
+.task input[type=checkbox]:checked::after{content:"✓";color:var(--ink);font-weight:700;font-size:15px}
+.task .t{font-weight:600}
+.task .t em{font-style:normal;color:var(--mute);font-weight:400;font-size:13px;margin-left:6px}
+.task .d{font-size:14px;color:var(--mute);min-width:0}
+.task textarea{width:100%;margin-top:6px;font:15px var(--f-body);background:#0f0e0b;color:var(--fg);border:1px solid var(--line);border-radius:10px;padding:8px;min-height:60px;resize:vertical}
+.listen{display:inline-flex;align-items:center;gap:8px;margin-top:6px;font-weight:600;text-decoration:none;border:1px solid var(--gold);border-radius:999px;padding:5px 12px}
+.listen img{height:18px}
+.alexa{font-family:var(--f-display);font-style:italic;color:#f3ead2;font-size:15px;margin-top:6px}
+.daystate{font-size:14px;text-align:center;color:var(--mute)}
+.daystate.ok{color:var(--ok)}
+.grid28{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin:10px 0}
+.grid28 button{aspect-ratio:1;max-width:100%;border-radius:10px;border:1px solid var(--line);background:none;color:var(--mute);font:600 14px var(--f-body);cursor:pointer;font-variant-numeric:tabular-nums}
+.grid28 button.done{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.grid28 button.part{border-color:var(--gold);color:var(--gold)}
+.grid28 button.today{outline:2px solid var(--gold-hi);outline-offset:1px;color:var(--fg)}
+.grid28 button.sel{box-shadow:0 0 0 2px var(--fg) inset}
+.grid28 button:disabled{opacity:.35;cursor:default}
+.wk{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;font-size:11px;color:var(--mute);text-align:center}
+.badges{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:8px 0 16px}
+.badge{text-align:center;border:1px solid var(--line);border-radius:12px;padding:10px 4px;font-size:12px;color:var(--mute)}
+.badge b{display:block;font-family:var(--f-display);font-size:20px;color:var(--line)}
+.badge.on{border-color:var(--gold);color:var(--fg)} .badge.on b{color:var(--gold)}
+.cert{text-align:center;border:2px solid var(--gold);border-radius:18px;padding:26px 18px;background:radial-gradient(ellipse at center top,#3b2c10 0,transparent 70%)}
+.cert h2{font-size:30px}
+.links{display:flex;flex-wrap:wrap;gap:8px 16px;justify-content:center;font-size:14px;margin-top:18px}
+.links button{background:none;border:0;color:var(--mute);font:inherit;text-decoration:underline;cursor:pointer}
+.sec{margin-top:22px}
+.why{margin:34px 0 8px;padding-top:14px;border-top:1px solid var(--line);color:var(--mute);font-size:12px;line-height:1.5}
+.why b{color:var(--mute);font-weight:600}.why p{margin:3px 0 0}
+body{margin:0;background:var(--bg)}
+#emmsg.ok{font-size:13px;color:var(--ok)}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="draft" id="draft">
+    <span><b>BORRADOR</b> · vista previa para revisar, no publicada</span>
+    <span id="sim"></span>
+  </div>
+  <div class="top"><img src="img/logo.png" alt="Logo de Amen Hallelujah Official"><span>Amen Hallelujah Official</span></div>
+  <main id="view" aria-live="polite"></main>
+</div>
+
+<script>
+/* ===================== CONTENIDO DEL RETO ===================== */
+const PLAN = {
+  // Base para todos, cada día: se aprenden de memoria
+  base: [1, 100, 91],
+  noche: 4,
+  // 2 Salmos de su tema por semana (se repiten los 7 días de esa semana)
+  temas: {"paz": [[23, 121], [46, 62], [131, 125], [63, 3]], "fuerza": [[27, 28], [31, 20], [2, 15], [144, 61]], "gratitud": [[103, 34], [136, 145], [150, 92], [95, 138]], "consuelo": [[42, 40], [30, 16], [147, 139], [56, 86]]},
+  nombreTema: {paz:'Paz', fuerza:'Fuerza', gratitud:'Gratitud', consuelo:'Consuelo'},
+  insignias: ['1','100','91','1·100·91'],
+  // Enlace directo a cada canción en cada plataforma
+  enlaces: {"1": {"youtube": "https://www.youtube.com/watch?v=SmdEcl-s_Po", "spotify": "https://open.spotify.com/track/2xv2DLbOIDUJF2o8caB51m", "apple": "https://music.apple.com/mx/album/1845988609?i=1845988610", "amazon": "https://music.amazon.com/albums/B0FVTCBHYC?trackAsin=B0FVTCJ3LW"}, "2": {"youtube": "https://www.youtube.com/watch?v=2Mzk3Pt4WPA", "spotify": "https://open.spotify.com/track/1RwlIhgUSH4Egas3Tn5to3", "apple": "https://music.apple.com/mx/album/1845988609?i=1845988611", "amazon": "https://music.amazon.com/albums/B0FVTCBHYC?trackAsin=B0FVSX7QJC"}, "3": {"youtube": "https://www.youtube.com/watch?v=q6Ye_F-uJYk", "spotify": "https://open.spotify.com/track/6sGL6t3sLiVMVfxa8N46HK", "apple": "https://music.apple.com/mx/album/1845988609?i=1845988612", "amazon": "https://music.amazon.com/albums/B0FVTC8DMB?trackAsin=B0FVTC2H8X"}, "4": {"youtube": "https://www.youtube.com/watch?v=RD5ozodhmPw", "spotify": "https://open.spotify.com/track/50eacEOvCCpbW9Khlswcud", "apple": "https://music.apple.com/mx/album/1845988609?i=1845988613", "amazon": "https://music.amazon.com/albums/B0FVTCBHYC?trackAsin=B0FVTB9DPF"}, "15": {"youtube": "https://www.youtube.com/watch?v=19kcRyYFGBw", "spotify": "https://open.spotify.com/track/5M2xZohEjCEhS640ma1Cbg", "apple": "https://music.apple.com/mx/album/1876286114?i=1876286120", "amazon": "https://music.amazon.com/albums/B0GMKW4H96?trackAsin=B0GMKCMGPT"}, "16": {"youtube": "https://www.youtube.com/watch?v=6qNzS51R1io", "spotify": "https://open.spotify.com/track/6M8LdWxci9VAdyR1QUbLBw", "apple": "https://music.apple.com/mx/album/1876286114?i=1876286121", "amazon": "https://music.amazon.com/albums/B0GMKW4H96?trackAsin=B0GMKSF2ZJ"}, "20": {"youtube": "https://www.youtube.com/watch?v=tZ5uzTWKP28", "spotify": "https://open.spotify.com/track/0TpqlBU5Dlr4sFmp1HBRIm", "apple": "https://music.apple.com/mx/album/1876286114?i=1876286125", "amazon": "https://music.amazon.com/albums/B0GMKW4H96?trackAsin=B0GMKW6D5L"}, "23": {"youtube": "https://www.youtube.com/watch?v=63XxgBbp-UI", "spotify": "https://open.spotify.com/track/7v0y5yLcV7WMXpna9U4XHn", "apple": "https://music.apple.com/mx/album/1875252552?i=1875252977", "amazon": "https://music.amazon.com/albums/B0GLR1HV23?trackAsin=B0GLR3DLF9"}, "27": {"youtube": "https://www.youtube.com/watch?v=7XXbFDgRkmg", "spotify": "https://open.spotify.com/track/6R4ENdrs7KP5sHomRBzBIS", "apple": "https://music.apple.com/mx/album/1875252552?i=1875252981", "amazon": "https://music.amazon.com/albums/B0GLR1HV23?trackAsin=B0GLR4PW4R"}, "28": {"youtube": "https://www.youtube.com/watch?v=zYOsH8vRP8s", "spotify": "https://open.spotify.com/track/1hSCyRqKTJdbhDOBLjv1Oe", "apple": "https://music.apple.com/mx/album/1875252552?i=1875252982", "amazon": "https://music.amazon.com/albums/B0GLR1HV23?trackAsin=B0GLRKDKSP"}, "30": {"youtube": "https://www.youtube.com/watch?v=cpWOhx-I0ro", "spotify": "https://open.spotify.com/track/5J3fJRzEH3DtdUPXIyfkhE", "apple": "https://music.apple.com/mx/album/1875252552?i=1875252984", "amazon": "https://music.amazon.com/albums/B0GLR1HV23?trackAsin=B0GLQVNTJT"}, "31": {"youtube": "https://www.youtube.com/watch?v=H0PvY865xyw", "spotify": "https://open.spotify.com/track/10M43SUGW2TdrQJm9yI4ZA", "apple": "https://music.apple.com/mx/album/1874147396?i=1874147397", "amazon": "https://music.amazon.com/albums/B0GL46DHJN?trackAsin=B0GL3PZ9JN"}, "34": {"youtube": "https://www.youtube.com/watch?v=hSqkGMzRF5g", "spotify": "https://open.spotify.com/track/7bzV3ooLoEIQH95x8O8lRH", "apple": "https://music.apple.com/mx/album/1874147396?i=1874147401", "amazon": "https://music.amazon.com/albums/B0GL46DHJN?trackAsin=B0GL3J7C64"}, "40": {"youtube": "https://www.youtube.com/watch?v=3CeFz4woVBY", "spotify": "https://open.spotify.com/track/2JdegDC8gFnpNYZnEVrUlf", "apple": "https://music.apple.com/mx/album/1874147396?i=1874147407", "amazon": "https://music.amazon.com/albums/B0GL46DHJN?trackAsin=B0GL3K5M2M"}, "42": {"youtube": "https://www.youtube.com/watch?v=fT6wNebfNC4", "spotify": "https://open.spotify.com/track/53DNjpaNN5vDxrJAIghkfl", "apple": "https://music.apple.com/mx/album/1872855435?i=1872855437", "amazon": "https://music.amazon.com/albums/B0GKBRCXM1?trackAsin=B0GKB44XLC"}, "46": {"youtube": "https://www.youtube.com/watch?v=zheJ9Fyw3Kk", "spotify": "https://open.spotify.com/track/3aBDAxNO21dkJIt8f4C2ys", "apple": "https://music.apple.com/mx/album/1872855435?i=1872855441", "amazon": "https://music.amazon.com/albums/B0GKBRCXM1?trackAsin=B0GK9XNBCJ"}, "56": {"youtube": "https://www.youtube.com/watch?v=Eu0bOxgRQCw", "spotify": "https://open.spotify.com/track/3TQMdTCZWGAUffoZ8quQXS", "apple": "https://music.apple.com/mx/album/1873037385?i=1873037391", "amazon": "https://music.amazon.com/albums/B0GKBDD882?trackAsin=B0GKBBCD5K"}, "61": {"youtube": "https://www.youtube.com/watch?v=YqM4tGu6scY", "spotify": "https://open.spotify.com/track/2jCCPIT71u6QSsgenSrmwu", "apple": "https://music.apple.com/mx/album/1873572583?i=1873572584", "amazon": "https://music.amazon.com/albums/B0GKQHPFD3?trackAsin=B0GKQJ6F64"}, "62": {"youtube": "https://www.youtube.com/watch?v=kg9kinxHKts", "spotify": "https://open.spotify.com/track/4R9gCX5danx3o6usnvNPIm", "apple": "https://music.apple.com/mx/album/1873572583?i=1873572585", "amazon": "https://music.amazon.com/albums/B0GKQHPFD3?trackAsin=B0GKQMTTYC"}, "63": {"youtube": "https://www.youtube.com/watch?v=XqyeOwQmLcY", "spotify": "https://open.spotify.com/track/3xrmylxGAVKHFkGO39qu8j", "apple": "https://music.apple.com/mx/album/1873572583?i=1873572586", "amazon": "https://music.amazon.com/albums/B0GKQHPFD3?trackAsin=B0GKQ9M65Q"}, "86": {"youtube": "https://www.youtube.com/watch?v=LFHATtHVLRc", "spotify": "https://open.spotify.com/track/5sUwNzzvDJNf93mSoXi99Q", "apple": "https://music.apple.com/mx/album/1857749215?i=1857749227", "amazon": "https://music.amazon.com/albums/B0G4NPLSK6?trackAsin=B0G4NNY43N"}, "91": {"youtube": "https://www.youtube.com/watch?v=L9ysBxUNa8E", "spotify": "https://open.spotify.com/track/1Ygy5IvfJTmWBRhziurHUw", "apple": "https://music.apple.com/mx/album/1848766988?i=1848766989", "amazon": "https://music.amazon.com/albums/B0FX3R7QQS?trackAsin=B0FX3Q26DC"}, "92": {"youtube": "https://www.youtube.com/watch?v=h9x2-NsshDc", "spotify": "https://open.spotify.com/track/0gZUWsUS5EoTWU6GxEnPVl", "apple": "https://music.apple.com/mx/album/1848766988?i=1848766990", "amazon": "https://music.amazon.com/albums/B0FX3R7QQS?trackAsin=B0FX3PVL12"}, "95": {"youtube": "https://www.youtube.com/watch?v=dJKqDybL1CY", "spotify": "https://open.spotify.com/track/4iScVYvdvmSYmYBB8DPqOp", "apple": "https://music.apple.com/mx/album/1848766988?i=1848766993", "amazon": "https://music.amazon.com/albums/B0FX3R7QQS?trackAsin=B0FX3NKYQJ"}, "100": {"youtube": "https://www.youtube.com/watch?v=N-ZGwqoAk-c", "spotify": "https://open.spotify.com/track/4rXt07m4SsHMrVoaBDk8LQ", "apple": "https://music.apple.com/mx/album/1848766988?i=1848766998", "amazon": "https://music.amazon.com/albums/B0FX3R7QQS?trackAsin=B0FX3SP94B"}, "103": {"youtube": "https://www.youtube.com/watch?v=LxB57EVi638", "spotify": "https://open.spotify.com/track/3qbG8RPMNf0TTRuHhLvRFn", "apple": "https://music.apple.com/mx/album/1857120737?i=1857120740", "amazon": "https://music.amazon.com/albums/B0G4BBYLH3?trackAsin=B0G4BC2GXQ"}, "121": {"youtube": "https://www.youtube.com/watch?v=hC3r7pQ12to", "spotify": "https://open.spotify.com/track/48XatGBAG6iRCn0LD2Futv", "apple": "https://music.apple.com/mx/album/1851311900?i=1851311901", "amazon": "https://music.amazon.com/albums/B0FZ885S3B?trackAsin=B0FZ88BQ9G"}, "125": {"youtube": "https://www.youtube.com/watch?v=69KjkPikrFQ", "spotify": "https://open.spotify.com/track/0DwIh6tzPAXKf48FoAmgKl", "apple": "https://music.apple.com/mx/album/1851311900?i=1851311905", "amazon": "https://music.amazon.com/albums/B0FZ885S3B?trackAsin=B0FZ8F75H2"}, "131": {"youtube": "https://www.youtube.com/watch?v=ZUFJW32psZw", "spotify": "https://open.spotify.com/track/3q31Zjwoum05lrBCETf3Nn", "apple": "https://music.apple.com/mx/album/1851330034?i=1851330035", "amazon": "https://music.amazon.com/albums/B0FZ8BRDKX?trackAsin=B0FZ8GJLCV"}, "136": {"youtube": "https://www.youtube.com/watch?v=0sf_KTXbxCc", "spotify": "https://open.spotify.com/track/2FIDe1wkY1LuONfqOQ6QDC", "apple": "https://music.apple.com/mx/album/1851330034?i=1851330040", "amazon": "https://music.amazon.com/albums/B0FZ8BRDKX?trackAsin=B0FZ8B8436"}, "138": {"youtube": "https://www.youtube.com/watch?v=lvm195qLR30", "spotify": "https://open.spotify.com/track/5EVePeQCbqezb5kT48qQog", "apple": "https://music.apple.com/mx/album/1851330034?i=1851330042", "amazon": "https://music.amazon.com/albums/B0FZ8BRDKX?trackAsin=B0FZ89L4RZ"}, "139": {"youtube": "https://www.youtube.com/watch?v=5n-RsBmwv0E", "spotify": "https://open.spotify.com/track/2TQSN4UxfxO6luWL5wYOB9", "apple": "https://music.apple.com/mx/album/1851330034?i=1851330043", "amazon": "https://music.amazon.com/albums/B0FZ8BRDKX?trackAsin=B0FZ8791KZ"}, "144": {"youtube": "https://www.youtube.com/watch?v=6XJ-nIjH7p0", "spotify": "https://open.spotify.com/track/7GzrlRMbSiONv3u8FjrgDj", "apple": "https://music.apple.com/mx/album/1851336983?i=1851336987", "amazon": "https://music.amazon.com/albums/B0FZFKG7BL?trackAsin=B0FZFKVH5J"}, "145": {"youtube": "https://www.youtube.com/watch?v=G9nwUEw5zXQ", "spotify": "https://open.spotify.com/track/4altOoxigDA1Rx7j9nnNAa", "apple": "https://music.apple.com/mx/album/1851336983?i=1851336988", "amazon": "https://music.amazon.com/albums/B0FZFKG7BL?trackAsin=B0FZFJ6F6K"}, "147": {"youtube": "https://www.youtube.com/watch?v=RzdXVUpUVaE", "spotify": "https://open.spotify.com/track/3JbdazmvMOZRykJm2CtHXD", "apple": "https://music.apple.com/mx/album/1851336983?i=1851336990", "amazon": "https://music.amazon.com/albums/B0FZFKG7BL?trackAsin=B0FZFPPB1X"}, "150": {"youtube": "https://www.youtube.com/watch?v=LWSVgM-qAjw", "spotify": "https://open.spotify.com/track/7zLwQmuyn1HbEdUyGu4mgT", "apple": "https://music.apple.com/mx/album/1851336983?i=1851336993", "amazon": "https://music.amazon.com/albums/B0FZFKG7BL?trackAsin=B0FZFJJSQ1"}}
+};
+const WHY_TXT = 'Cierra los ojos y conecta: sin imágenes, solo su Palabra cantada. Como nos enseña la Biblia: «No te harás imagen, ni ninguna semejanza de lo que esté arriba en el cielo, ni abajo en la tierra» (Éxodo 20:4). Escucha el Salmo y deja que sea Él quien hable a tu corazón.';
+function WHY(){ return `<div class="why"><b>¿Por qué no hay vídeos?</b><p>${WHY_TXT}</p></div>`; }
+const GFORM = 'https://docs.google.com/forms/d/e/1FAIpQLScQvVuO0JqtifhEsv135nQCHbzzHKF2f4W307s6mJjmcW_k1A/formResponse';
+const GFIELD = 'entry.875086947';
+const PERFIL = {
+  youtube:'https://music.youtube.com/watch?v=L9ysBxUNa8E',
+  spotify:'https://open.spotify.com/artist/2UUZ94WPWDnYgOApaMDN0p',
+  apple:'https://music.apple.com/artist/1845540088',
+  amazon:'https://music.amazon.com/artists/B0FXHVD6C2/amen-hallelujah-official'
+};
+const PLAT = {youtube:'YouTube', spotify:'Spotify', apple:'Apple Music', amazon:'Amazon Music'};
+const WEB = 'https://amenhallelujahofficial.github.io/reto.html';
+
+/* ===================== ESTADO (guardado en el móvil) ===================== */
+const KEY = 'aho_reto_v1';
+let S = load() || {answers:{}, start:null, done:{}, thanks:{}, email:null};
+let sim = 0;        // solo borrador: simular días
+let selDay = null;  // día abierto en la cuadrícula
+let qi = 0;
+function load(){ try{ return JSON.parse(localStorage.getItem(KEY)); }catch(e){ return null; } }
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+function iso(d){ return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+function today(){ const d=new Date(); d.setHours(0,0,0,0); d.setDate(d.getDate()+sim); return d; }
+function dayNum(){ if(!S.start) return 0; const s=new Date(S.start+'T00:00:00'); return Math.floor((today()-s)/864e5)+1; }
+
+// Enlace para grupos e iglesias: ?inicio=AAAA-MM-DD hace que todos empiecen el mismo día
+try{ const p=new URLSearchParams(location.search).get('inicio'); if(p && /^\d{4}-\d{2}-\d{2}$/.test(p)){ S.groupStart=p; } }catch(e){}
+
+/* ===================== PREGUNTAS ===================== */
+const QS = [
+  {id:'busca', q:'¿Qué buscas en estos 28 días?', opts:[
+    ['paz','🕊️','Paz','Tranquilidad para el corazón'],['fuerza','🔥','Fuerza','Ánimo para cada día'],
+    ['gratitud','🙌','Gratitud','Dar gracias a Dios'],['consuelo','🤍','Consuelo','Para un momento difícil']]},
+  {id:'tiempo', q:'¿Cuánto tiempo puedes dedicar cada día?', opts:[
+    ['3','⏱️','10 minutos','3 Salmos al día'],['5','⏱️','15–20 minutos','5 Salmos al día'],
+    ['7','⏱️','25–30 minutos','7 Salmos al día']]},
+  {id:'_animo'},
+  {id:'plataforma', q:'¿Dónde escuchas música?', logos:true, opts:[
+    ['youtube','img/youtube.png','YouTube'],['spotify','img/spotify.png','Spotify'],
+    ['apple','img/apple.png','Apple Music'],['amazon','img/amazon.png','Amazon Music']]},
+  {id:'con', q:'¿Cómo vas a hacer el reto?', opts:[
+    ['solo','🙏','Yo solo'],['familia','🏠','En familia'],['iglesia','⛪','Con mi iglesia']]},
+  {id:'hora', q:'¿Tu momento libre?', time:true}
+];
+
+/* ===================== PLAN DEL DÍA ===================== */
+function dayPlan(day){
+  const w = Math.min(4, Math.ceil(day/7)), t = S.answers.tiempo || '3', tema = S.answers.busca || 'paz';
+  const items = PLAN.base.map((p,i)=>({id:'base'+p, icon:'🎵', title:'Paso '+(i+1)+' · Salmo '+p, sub:i===0?'Cierra los ojos y conecta':'', ps:p}));
+  let paso = 4;
+  if(t!=='3'){
+    PLAN.temas[tema][w-1].forEach(p=>items.push({id:'tema'+p, icon:'🎵', title:'Paso '+(paso++)+' · Salmo '+p, sub:'Tu tema: '+PLAN.nombreTema[tema], ps:p}));
+  }
+  if(t==='7'){
+    const sem = PLAN.temas[tema], rep = w===1 ? sem[0][0] : sem[w-2][0];
+    items.push({id:'repaso', icon:'🔁', title:'Paso '+(paso++)+' · Salmo '+rep, sub:'Repaso', ps:rep});
+    items.push({id:'noche', icon:'🌙', title:'Paso '+(paso++)+' · Salmo '+PLAN.noche, sub:'Antes de dormir', ps:PLAN.noche});
+  }
+  items.push({id:'gracias', icon:'🙌', title:'Da gracias', sub:'Escribe una cosa por la que das gracias hoy', text:true});
+  items.push({id:'comparte', icon:'💌', title:'Compártelo', sub:'Invita a alguien a hacer el reto contigo', share:91});
+  if(day%7===0) items.push({id:'prueba', icon:'🏅', title:'¿Te lo sabes? Canta el principio sin mirar', sub:'Si lo consigues, ganas la insignia del Salmo '+PLAN.insignias[w-1]});
+  return {w, nuevo:PLAN.base[Math.min(2,w-1)], items};
+}
+const need = n => Math.min(3, n);
+function doneCount(day){ const d=S.done[day]||{}; return Object.values(d).filter(Boolean).length; }
+function dayComplete(day){ return doneCount(day) >= need(dayPlan(day).items.length); }
+function streak(upTo){ let s=0; for(let d=upTo; d>=1; d--){ if(dayComplete(d)) s++; else if(d===upTo) continue; else break; } return s; }
+function link(ps){ const p=S.answers.plataforma||'youtube'; return (PLAN.enlaces[ps]&&PLAN.enlaces[ps][p]) || PERFIL[p]; }
+
+/* ===================== PANTALLAS ===================== */
+const V = document.getElementById('view');
+function render(html){ V.innerHTML = '<div class="screen">'+html+WHY()+'</div>'; window.scrollTo(0,0); drawSim(); }
+function esc(s){ return String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+function home(){
+  render(`
+  <section class="hero">
+    <p class="verse center">«La fe viene por el oír, y el oír por la palabra de Dios»<small>Romanos 10:17</small></p>
+    <h1>28 días para acercarte a Dios</h1>
+    <span class="free">cantando los Salmos · gratis, para todos</span>
+    <p class="lead">Unos minutos al día para escuchar, cantar y guardar los Salmos en tu corazón. Empieza cuando quieras: tu Día 1 lo eliges tú.</p>
+  </section>
+  <h3 class="sec">Lo que vas a conseguir:</h3>
+  <ul class="bens">
+    <li><b>Escuchar la Palabra</b> y ver crecer tu fe</li>
+    <li><b>Acercarte a Dios</b> en la oración y la alabanza</li>
+    <li><b>Encontrar consuelo y fuerza</b> cuando más lo necesitas</li>
+    <li><b>Aprender los Salmos de memoria</b>, cantando</li>
+    <li><b>Nutrir tu espíritu con la Palabra</b> cada mañana</li>
+  </ul>
+  <h2 class="sec">Prepara tu reto</h2>
+  ${QS.filter(q=>q.id!=='_animo').map((q,i)=>`<fieldset class="qf" data-q="${q.id}"><legend class="q">${i+1}. ${q.q}</legend>` + (q.time
+      ? `<input class="timeinput" type="time" id="hora" value="${S.answers.hora||'07:00'}" aria-label="Tu momento libre">`
+      : `<div class="opts ${q.opts.length===3?'three':''}">` + q.opts.map(o=> q.logos
+        ? `<button type="button" class="opt logo ${S.answers[q.id]===o[0]?'on':''}" data-v="${o[0]}" aria-label="${o[2]}"><img src="${o[1]}" alt="${o[2]}"></button>`
+        : `<button type="button" class="opt ${S.answers[q.id]===o[0]?'on':''}" data-v="${o[0]}"><span class="ic">${o[1]}</span><span>${o[2]}${o[3]?`<small>${o[3]}</small>`:''}</span></button>`).join('') + `</div>`)
+    + `</fieldset>`).join('')}
+  <p class="pending" id="faltan" hidden></p>
+  <button class="btn" id="go">Empezar mi reto GRATIS</button>
+  <p class="center" style="font-size:14px;color:var(--mute);margin-top:10px">Escuchas con tu cuenta de Spotify, Amazon Music o Apple Music, o gratis en YouTube.</p>`);
+  { const h=V.querySelector('.qf[data-q="hora"]'), c=V.querySelector('.qf[data-q="con"]'), row=document.createElement('div');
+    row.className='row45'; c.before(row); row.append(c,h); }
+  V.querySelectorAll('.qf .opt').forEach(b=> b.onclick = ()=>{
+    const f=b.closest('.qf'); f.querySelectorAll('.opt').forEach(x=>x.classList.remove('on')); b.classList.add('on');
+    S.answers[f.dataset.q]=b.dataset.v; save(); document.getElementById('faltan').hidden=true;
+  });
+  document.getElementById('go').onclick = ()=>{
+    S.answers.hora = document.getElementById('hora').value || '07:00'; save();
+    const miss = QS.filter(q=>q.opts && !S.answers[q.id]).map(q=>q.q);
+    const m=document.getElementById('faltan');
+    if(miss.length){ m.hidden=false; m.textContent='Te falta responder: '+miss.join(' · ');
+      V.querySelector(`.qf[data-q="${QS.find(q=>q.opts&&!S.answers[q.id]).id}"]`).scrollIntoView({behavior:'smooth',block:'center'}); return; }
+    preparing();
+  };
+}
+
+function question(){
+  const total = QS.filter(q=>q.id!=='_animo').length;
+  const q = QS[qi];
+  const n = QS.slice(0,qi+1).filter(q=>q.id!=='_animo').length;
+  const bar = `<div class="bar" aria-hidden="true"><i style="width:${Math.round(100*qi/QS.length)}%"></i></div>`;
+  if(q.id==='_animo'){
+    const t = S.answers.tiempo;
+    render(bar+`<div class="center" style="padding:20px 0">
+      <h2>${t==='5'?'Bastan 5 minutos':'Muy buena elección'}</h2>
+      <p class="lead">Dios tiene una palabra para ti cada día. Escuchar el mismo Salmo varios días seguidos hace que se quede en tu corazón, y sin darte cuenta lo cantarás de memoria.</p>
+      <p class="verse">«Hablando entre vosotros con salmos»<small>Efesios 5:19</small></p></div>
+      <button class="btn" id="nx">Continuar</button>`);
+    document.getElementById('nx').onclick = ()=>{ qi++; question(); };
+    return;
+  }
+  let body = '';
+  if(q.time){
+    body = `<input class="timeinput" type="time" id="hora" value="${S.answers.hora||'07:00'}" aria-label="Hora a la que te despiertas">
+            <button class="btn" id="nx">Continuar</button>`;
+  } else {
+    body = `<div class="opts ${q.logos?'two':''}">` + q.opts.map(o=> q.logos
+      ? `<button class="opt logo ${S.answers[q.id]===o[0]?'on':''}" data-v="${o[0]}" aria-label="${o[2]}"><img src="${o[1]}" alt="${o[2]}"></button>`
+      : `<button class="opt ${S.answers[q.id]===o[0]?'on':''}" data-v="${o[0]}"><span class="ic">${o[1]}</span><span>${o[2]}${o[3]?`<small>${o[3]}</small>`:''}</span></button>`
+    ).join('') + `</div>`;
+  }
+  render(bar + `<div class="kicker">Pregunta ${n} de ${total}</div><p class="q">${q.q}</p>` + body +
+    (qi>0?`<div class="links"><button id="bk">Volver</button></div>`:''));
+  if(q.time){ document.getElementById('nx').onclick = ()=>{ S.answers.hora = document.getElementById('hora').value||'07:00'; save(); next(); }; }
+  V.querySelectorAll('.opt').forEach(b=> b.onclick = ()=>{ S.answers[q.id]=b.dataset.v; save(); b.classList.add('on'); setTimeout(next, 180); });
+  const bk=document.getElementById('bk'); if(bk) bk.onclick=()=>{ qi--; question(); };
+}
+function next(){ qi++; if(qi<QS.length) question(); else preparing(); }
+
+function preparing(){
+  const steps = ['Eligiendo tus Salmos','Ordenando tus 4 semanas','Preparando tus tareas diarias','Ajustando tu tiempo diario'];
+  render(`<div class="center"><div class="spin" aria-hidden="true"></div><h2>Preparando tu camino de 28 días…</h2>
+    <ul class="steps">${steps.map(s=>`<li>${s}</li>`).join('')}</ul></div>`);
+  const lis = V.querySelectorAll('.steps li'); let i=0;
+  const tick = setInterval(()=>{ if(i<lis.length){ lis[i++].classList.add('done'); } else { clearInterval(tick); ready(); } }, 650);
+}
+
+function ready(){
+  const a=S.answers, t={3:'10 minutos (3 Salmos)',5:'15–20 minutos (5 Salmos)',7:'25–30 minutos (7 Salmos)'}[a.tiempo];
+  const con={solo:'Tú solo',familia:'En familia',iglesia:'Con tu iglesia'}[a.con];
+  render(`<div class="center"><div class="kicker">Tu reto está listo</div><h2>Tu camino de 28 días</h2></div>
+  <div class="ladder">${[0,1,2,3].map(i=>`<div><span>Semana ${i+1}</span><b>${a.tiempo==='3'?PLAN.insignias[i]:PLAN.temas[a.busca||'paz'][i].join(' · ')}</b><span>${a.tiempo==='3'?'Base: 1 · 100 · 91':'+ base 1 · 100 · 91'}</span></div>`).join('')}</div>
+  <div class="card"><dl class="summary">
+    <dt>Cada día</dt><dd>${t}</dd>
+    <dt>Tu tema</dt><dd>${PLAN.nombreTema[a.busca]||''}</dd>
+    <dt>Escuchas en</dt><dd>${PLAT[a.plataforma]}</dd>
+    <dt>Tu recordatorio</dt><dd>${a.hora}</dd>
+    <dt>Lo haces</dt><dd>${con}</dd></dl></div>
+  <p class="center" style="margin-top:12px">Al terminar te sabrás <b>los Salmos 1, 100 y 91 de memoria</b>.</p>
+  <h3 class="sec">¿Cómo quieres recibir tu Salmo cada mañana?</h3>
+  <p class="verse" style="font-size:17px">«De gracia recibisteis, dad de gracia»<small>Mateo 10:8</small></p>
+  <p style="color:var(--mute);font-size:14px">Por eso este reto es gratis, para siempre. Elige una o varias formas de recibirlo.</p>
+  ${reminders()}
+  <button class="btn" id="start">Empezar mi Día 1</button>`);
+  wireReminders();
+  document.getElementById('start').onclick = ()=>{ S.start = S.groupStart || iso(today()); save(); dayView(); };
+}
+
+function reminders(){
+  return `<div class="rem">
+    <div class="card"><h3>📧 Email</h3><p>Recibe tu día cada mañana en tu correo.</p>
+      <input type="email" id="email" placeholder="tu@correo.com" autocomplete="email" value="${esc(S.email||'')}">
+      <label class="chk"><input type="checkbox" id="ok"> Acepto recibir el reto por email. Puedo darme de baja cuando quiera. <a href="privacidad.html" target="_blank" style="color:#e2c275">Privacidad</a></label>
+      <button class="mini" id="em">Recibir por email</button><span id="emmsg" hidden></span></div>
+    <div class="card"><h3>📅 Recordatorio en mi calendario</h3><p>Se añade un aviso diario a las ${S.answers.hora||'07:00'} durante 28 días, con el enlace a tu día.</p>
+      <a class="mini" id="gcal" target="_blank" rel="noopener">Añadir a Google Calendar</a>
+      <button class="mini" id="ics">Añadir a iPhone / otro calendario</button><span class="pending" id="icsmsg" hidden>En la web descarga el archivo del calendario; en esta vista previa está bloqueado</span></div>
+  </div>`;
+}
+function wireReminders(){
+  const h=(S.answers.hora||'07:00').replace(':',''), st=(S.groupStart||iso(today())).replace(/-/g,'');
+  const end = String(Number(h)+10).padStart(4,'0');
+  let tz='America/Mexico_City'; try{ tz=Intl.DateTimeFormat().resolvedOptions().timeZone||tz; }catch(e){}
+  const title='Tu Salmo del día · Reto de 28 días', det='Abre tu día del reto: '+WEB;
+  document.getElementById('gcal').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(title)+
+    '&details='+encodeURIComponent(det)+'&dates='+st+'T'+h+'00/'+st+'T'+end+'00&ctz='+encodeURIComponent(tz)+'&recur='+encodeURIComponent('RRULE:FREQ=DAILY;COUNT=28');
+  document.getElementById('ics').onclick = ()=>{
+    const ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Amen Hallelujah Official//Reto 28//ES','BEGIN:VEVENT','UID:reto28-'+st+'@amenhallelujahofficial',
+      'DTSTAMP:'+new Date().toISOString().replace(/[-:]/g,'').split('.')[0]+'Z','DTSTART:'+st+'T'+h+'00','DURATION:PT10M','RRULE:FREQ=DAILY;COUNT=28',
+      'SUMMARY:'+title,'DESCRIPTION:'+det,'URL:'+WEB,'BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:'+title,'TRIGGER:PT0M','END:VALARM','END:VEVENT','END:VCALENDAR'].join('\r\n');
+    try{ const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'})); a.download='reto-28-dias-salmos.ics'; a.click(); }catch(e){}
+    document.getElementById('icsmsg').hidden=false;
+  };
+  document.getElementById('em').onclick = ()=>{
+    const e=document.getElementById('email').value.trim(), ok=document.getElementById('ok').checked, m=document.getElementById('emmsg');
+    m.hidden=false;
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)){ m.className='pending'; m.textContent='Escribe un email válido, por ejemplo nombre@gmail.com.'; return; }
+    if(!ok){ m.className='pending'; m.textContent='Marca la casilla para aceptar recibir el reto por email.'; return; }
+    const b=document.getElementById('em'); b.disabled=true; m.className='pending'; m.textContent='Enviando…';
+    const a=S.answers, clean=x=>String(x||'').replace(/[|\n]/g,' ');
+    const datos=['v1','alta',e,a.busca,a.tiempo,a.plataforma,a.hora,a.con].map(clean).join('|');
+    const fd=new FormData(); fd.append(GFIELD,datos);
+    fetch(GFORM,{method:'POST',mode:'no-cors',body:fd}).then(()=>{
+      S.email=e; save(); m.className='ok'; m.textContent='¡Listo! Hoy mismo te llegará tu Día 1 a '+e+'. Si no lo ves, mira en Promociones o Spam.';
+      try{ window.goatcounter&&goatcounter.count({path:'reto-email-ok',event:true}); }catch(_){}
+    }).catch(()=>{ b.disabled=false; m.className='pending'; m.textContent='No hay conexión. Inténtalo de nuevo en un momento.'; });
+  };
+}
+
+function dayView(){
+  const today_n = dayNum();
+  if(today_n<1){ // grupo que empieza más adelante
+    render(`<div class="center"><h2>Tu reto empieza el ${S.start}</h2><p class="lead">Te esperamos ese día con tu Día 1.</p></div>`); return;
+  }
+  const cur = Math.min(28, today_n);
+  const day = selDay && selDay<=cur ? selDay : cur;
+  const P = dayPlan(day), d = S.done[day]||{};
+  const plat = S.answers.plataforma||'youtube';
+  const items = P.items.map(it=>{
+    const on = !!d[it.id];
+    let extra='';
+    if(it.ps){ extra = `<a class="listen" href="${link(it.ps)}" target="_blank" rel="noopener" data-task="${it.id}"><img src="img/${plat}.png" alt="">Escuchar en ${PLAT[plat]}</a>` }
+    if(it.text) extra = `<textarea id="thx${day}" aria-label="Doy gracias por…" placeholder="Hoy doy gracias por…">${esc(S.thanks[day]||'')}</textarea>`;
+    if(it.share){ const msg='Hoy escucho el Salmo '+it.share+' en el reto de 28 días con los Salmos de Amen Hallelujah Official. Es gratis, únete: '+WEB;
+      extra = `<a class="listen" href="https://wa.me/?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener" data-task="comparte">Enviar por WhatsApp</a>`; }
+    return `<label class="task ${on?'done':''}"><input type="checkbox" data-id="${it.id}" ${on?'checked':''} aria-label="${esc(it.title)}">
+      <div class="d"><div class="t" style="color:var(--fg)">${it.icon} ${it.title}${it.sub?`<em>${it.sub}</em>`:''}</div>${extra}</div></label>`;
+  }).join('');
+  const nd = need(P.items.length), c = doneCount(day);
+  const finished = [...Array(28)].every((_,i)=>dayComplete(i+1));
+  const grid = [...Array(28)].map((_,i)=>{ const n=i+1, cls=[dayComplete(n)?'done':(doneCount(n)?'part':''), n===cur?'today':'', n===day?'sel':''].join(' ');
+    return `<button class="${cls}" data-day="${n}" ${n>cur?'disabled':''} aria-label="Día ${n}">${n}</button>`; }).join('');
+  const badges = PLAN.insignias.map((p,i)=>{ const got = dayComplete((i+1)*7) && (S.done[(i+1)*7]||{}).prueba;
+    return `<div class="badge ${got?'on':''}"><b>${p}</b>${got?'Ya me lo sé':'Semana '+(i+1)}</div>`; }).join('');
+  render(`
+    ${finished?`<div class="cert"><div class="kicker">Reto completado</div><h2>¡Lo has conseguido!</h2>
+      <p class="lead">28 días con los Salmos. Ahora te sabes los Salmos 1, 100 y 91 de memoria.</p>
+      <a class="btn" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent('He completado el reto de 28 días con los Salmos de Amen Hallelujah Official. Es gratis, empieza tú también: '+WEB)}">Compartir mi logro</a></div>`:''}
+    <div class="dayhead"><div><div class="kicker">Semana ${P.w}</div><div class="big">Día ${day} <small>de 28</small></div></div>
+      <div class="streak"><b>${streak(cur)} 🔥</b>días seguidos</div></div>
+    ${day<cur?`<p class="daystate">Estás recuperando un día anterior. <button class="mini" id="tod" style="padding:3px 10px">Volver a hoy</button></p>`:''}
+    <div class="tasks">${items}</div>
+    <p class="daystate ${c>=nd?'ok':''}">${c>=nd?'✓ Día completado. ¡Bendiciones!':'Marca '+nd+' tareas para completar el día ('+c+' de '+nd+')'}</p>
+    <h3 class="sec">Tus 28 días</h3>
+    <div class="grid28">${grid}</div>
+    <p style="font-size:13px;color:var(--mute)">¿Te perdiste un día? Tócalo para recuperarlo.</p>
+    <h3 class="sec">Tus insignias</h3>
+    <div class="badges">${badges}</div>
+    <div class="card"><h3 style="font-size:16px">🔔 Tus recordatorios</h3>${reminders()}</div>
+    <div class="links"><button id="chg">Cambiar mis respuestas</button><button id="rst">Empezar de nuevo</button></div>`);
+  V.querySelectorAll('.task input').forEach(x=> x.onchange = ()=>{ S.done[day]=S.done[day]||{}; S.done[day][x.dataset.id]=x.checked; save(); dayView(); });
+  V.querySelectorAll('a[data-task]').forEach(a=> a.addEventListener('click', ()=>{ S.done[day]=S.done[day]||{}; S.done[day][a.dataset.task]=true; save(); setTimeout(dayView,300); }));
+  const ta=document.getElementById('thx'+day); if(ta) ta.oninput=()=>{ S.thanks[day]=ta.value; if(ta.value.trim()){ S.done[day]=S.done[day]||{}; if(!S.done[day].gracias){ S.done[day].gracias=true; ta.closest('.task').querySelector('input').checked=true; } } save(); };
+  if(ta) ta.onblur=()=>dayView();
+  V.querySelectorAll('.grid28 button[data-day]').forEach(b=> b.onclick=()=>{ selDay=Number(b.dataset.day); dayView(); });
+  const tod=document.getElementById('tod'); if(tod) tod.onclick=()=>{ selDay=null; dayView(); };
+  document.getElementById('chg').onclick=()=>{ home(); };
+  const rst=document.getElementById('rst');
+  rst.onclick=()=>{ if(rst.dataset.c){ S={answers:{},start:null,done:{},thanks:{},email:null}; save(); sim=0; selDay=null; home(); } else { rst.dataset.c=1; rst.textContent='Pulsa otra vez para borrar tu progreso'; } };
+  wireReminders();
+}
+
+/* Solo borrador: avanzar días para revisar el reto completo */
+function drawSim(){
+  const el=document.getElementById('sim');
+  if(!/borrador/.test(location.search)){ const d=document.getElementById('draft'); if(d) d.style.display='none'; return; }
+  if(!S.start){ el.innerHTML=''; return; }
+  el.innerHTML=`Simular día: <button id="sm">−</button> <b style="letter-spacing:0">${Math.max(1,Math.min(28,dayNum()))}</b> <button id="sp">+</button> <button id="sf">Llenar días</button>`;
+  document.getElementById('sm').onclick=()=>{ sim=Math.max(sim-1,0); selDay=null; dayView(); };
+  document.getElementById('sp').onclick=()=>{ if(dayNum()<28){ sim++; selDay=null; dayView(); } };
+  document.getElementById('sf').onclick=()=>{ for(let n=1;n<dayNum();n++){ const P=dayPlan(n); S.done[n]={}; P.items.forEach(i=>S.done[n][i.id]=true); } save(); dayView(); };
+}
+
+(S.start ? dayView : home)();
+</script>
+</body>
+</html>
