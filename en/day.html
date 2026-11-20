@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>My Challenge Day · Amen Hallelujah Official</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../img/favicon.png">
+<script data-goatcounter="https://amenhallelujahofficial.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Página del día del Reto 28 días: el correo diario abre aquí. Mismo estilo que reto.html (noche + oro). */
+:root{
+  --bg:#0b0b0d; --card:#15130f; --line:#2f281b; --fg:#ece6d6; --mute:#a89f8a;
+  --gold:#d6af55; --gold-hi:#f0ce6e; --ok:#7fbf7a; --ink:#111; --wa:#25D366;
+  --f-display:Lora,Georgia,serif; --f-body:Poppins,system-ui,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{background:var(--bg)}
+body{margin:0;font-family:var(--f-body);font-size:16px;line-height:1.6;color:var(--fg);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.app{max-width:560px;margin:0 auto;padding-block:14px 48px}
+a{color:var(--gold)}
+.top{display:flex;align-items:center;gap:10px;margin-bottom:18px;text-decoration:none}
+.top img{width:34px;height:34px;border-radius:50%}
+.top span{font-family:var(--f-display);font-weight:700;color:var(--gold);font-size:15px}
+.kicker{text-transform:uppercase;letter-spacing:.14em;font-size:12px;color:var(--gold);margin:0}
+h1{font-family:var(--f-display);color:var(--gold);font-size:clamp(32px,9vw,44px);line-height:1.15;margin:.1em 0 .3em}
+.lead{margin:0 0 10px}
+.bar{height:6px;background:var(--line);border-radius:6px;overflow:hidden;margin:8px 0 4px}
+.bar i{display:block;height:100%;width:0;background:var(--gold);transition:width .4s}
+.count{font-size:13px;color:var(--mute);margin:0 0 14px}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.step{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px;transition:border-color .3s,opacity .3s}
+.step.next{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
+.step.done{opacity:.72}
+.row{display:flex;align-items:center;gap:12px}
+.num{flex:none;width:32px;height:32px;border-radius:50%;border:1px solid var(--gold);color:var(--gold);display:grid;place-items:center;font-size:14px;font-weight:600}
+.step.done .num{background:var(--gold);color:var(--ink)}
+.txt{flex:1;min-width:0}
+.txt b{display:block;font-size:17px}
+.txt small{color:var(--mute);font-size:13.5px}
+.play{flex:none;display:inline-block;background:#1d1a14;border:2px solid var(--gold);color:#fff;font-weight:600;font-size:15px;
+  padding:7px 13px;border-radius:12px;text-decoration:none;white-space:nowrap}
+.step.done .play{border-color:var(--line);color:var(--mute)}
+.ask{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:15px}
+.ask button{font:600 14px var(--f-body);border-radius:999px;padding:7px 14px;margin:6px 6px 0 0;cursor:pointer}
+.ask .yes{background:var(--gold);color:var(--ink);border:0}
+.ask .no{background:none;color:var(--fg);border:1px solid var(--line)}
+.toast{background:linear-gradient(180deg,#2c2512,#1d190f);border:1px solid var(--gold);border-radius:16px;padding:14px 16px;margin:0 0 14px;
+  font-size:16px;animation:in .35s ease-out}
+.toast b{color:var(--gold-hi)}
+.toast.final{text-align:center;font-size:18px}
+.toast.final b{display:block;font-family:var(--f-display);font-size:24px;margin-bottom:2px}
+@keyframes in{from{transform:translateY(-6px);opacity:0}to{transform:none;opacity:1}}
+.extra{margin-top:22px;display:grid;gap:12px}
+.extra p{margin:0}
+.wa{display:inline-block;background:var(--wa);color:#fff;font-weight:600;padding:11px 18px;border-radius:12px;text-decoration:none;margin-top:8px}
+.why{font-size:12.5px;color:var(--mute);border-top:1px solid var(--line);margin-top:30px;padding-top:12px}
+.why b{color:var(--fg)}
+.err{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--gold-hi);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main class="app" id="app">
+  <a class="top" href="index.html"><img src="../img/logo.png" alt=""><span>Amen Hallelujah Official</span></a>
+  <div id="c"></div>
+</main>
+<script>
+const DATA = {"L": {"1": {"spotify": "https://open.spotify.com/track/4cZkJXe9RFB0w6rUZEIB6k", "amazon": "https://music.amazon.com/albums/B0GV9KP1CR?trackAsin=B0GV99V9GX", "apple": "https://music.apple.com/us/album/1888979198?i=1888979199", "youtube": "https://www.youtube.com/watch?v=Gn6yh7JXIzI", "d": 158}, "2": {"spotify": "https://open.spotify.com/track/2xdzFKSvtVxZJCKFlqsKYY", "amazon": "https://music.amazon.com/albums/B0GV9KP1CR?trackAsin=B0GV9L3DXT", "apple": "https://music.apple.com/us/album/1888979198?i=1888979200", "youtube": "https://www.youtube.com/watch?v=pivDmxKTIKM", "d": 239}, "3": {"spotify": "https://open.spotify.com/track/2mmFk0aGlSudL6TO1KUCHv", "amazon": "https://music.amazon.com/albums/B0GV9KP1CR?trackAsin=B0GV9BK8VX", "apple": "https://music.apple.com/us/album/1888979198?i=1888979201", "youtube": "https://www.youtube.com/watch?v=HVSMvQqiV8k", "d": 182}, "4": {"spotify": "https://open.spotify.com/track/2TIYE9relFmvQ8Q0Vqa1rY", "amazon": "https://music.amazon.com/albums/B0GV9KP1CR?trackAsin=B0GV96KJNN", "apple": "https://music.apple.com/us/album/1888979198?i=1888979202", "youtube": "https://www.youtube.com/watch?v=d0PHtbZvpxM", "d": 172}, "15": {"spotify": "https://open.spotify.com/track/1dbZTqV9lskwGxh22CBza1", "amazon": "https://music.amazon.com/albums/B0GWCXLDHM?trackAsin=B0GWCK9GZD", "apple": "https://music.apple.com/us/album/1891748645?i=1891748650", "youtube": "https://www.youtube.com/watch?v=GeprcUs0lkc", "d": 128}, "16": {"spotify": "https://open.spotify.com/track/13PhqrIjsxZsL3i7DeREBD", "amazon": "https://music.amazon.com/albums/B0GWCXLDHM?trackAsin=B0GWC48429", "apple": "https://music.apple.com/us/album/1891748645?i=1891748651", "youtube": "https://www.youtube.com/watch?v=TLerJdgZsz4", "d": 335}, "18": {"spotify": "https://open.spotify.com/track/6koWaTQ7QZlOMNLbzgKbMM", "amazon": "https://music.amazon.com/albums/B0GWCXLDHM?trackAsin=B0GWCVD5HJ", "apple": "https://music.apple.com/us/album/1891748645?i=1891748654", "youtube": "https://www.youtube.com/watch?v=70OAbfw_Lus", "d": 393}, "20": {"spotify": "https://open.spotify.com/track/5fdy7QXCIvJxWKON91b0Yt", "amazon": "https://music.amazon.com/albums/B0GWCXLDHM?trackAsin=B0GWC6WX5G", "apple": "https://music.apple.com/us/album/1891748645?i=1891748656", "youtube": "https://www.youtube.com/watch?v=2GuqEsm_TTE", "d": 212}, "23": {"spotify": "https://open.spotify.com/track/5R4z42WxQSGs5kLz8W3oHo", "amazon": "https://music.amazon.com/albums/B0HC13QSXZ?trackAsin=B0HC1CDY9M", "apple": "https://music.apple.com/us/album/6795764484?i=6795764494", "youtube": "https://www.youtube.com/watch?v=YPM0u03Dh0o", "d": 135}, "27": {"spotify": "https://open.spotify.com/track/3uEZlTzlZ8BFRFXoVElKle", "amazon": "https://music.amazon.com/albums/B0HC13QSXZ?trackAsin=B0HC1FX3L4", "apple": "https://music.apple.com/us/album/6795764484?i=6795764498", "youtube": "https://www.youtube.com/watch?v=2Gx9iIk1UO8", "d": 384}, "28": {"spotify": "https://open.spotify.com/track/13H2tmEgyEoWUkYlItIoVv", "amazon": "https://music.amazon.com/albums/B0HC13QSXZ?trackAsin=B0HC1FZJHR", "apple": "https://music.apple.com/us/album/6795764484?i=6795764499", "youtube": "https://www.youtube.com/watch?v=QLwS-JE52LU", "d": 202}, "30": {"spotify": "https://open.spotify.com/track/0R53K4VXk6BkKGSPhosKuD", "amazon": "https://music.amazon.com/albums/B0HC13QSXZ?trackAsin=B0HC1JWSDS", "apple": "https://music.apple.com/us/album/6795764484?i=6795764501", "youtube": "https://www.youtube.com/watch?v=6MBjMlO4SAs", "d": 256}, "31": {"spotify": "https://open.spotify.com/track/4IRRbEuxX8weAi2Hmye1B2", "amazon": "https://music.amazon.com/albums/B0HD4SPG7R?trackAsin=B0HD48RMGL", "apple": "https://music.apple.com/us/album/6798492335?i=6798492336", "youtube": "https://www.youtube.com/watch?v=GIonsOeL9SA", "d": 489}, "34": {"spotify": "https://open.spotify.com/track/5TlRNxizS8PYiTGKOZs8oA", "amazon": "https://music.amazon.com/albums/B0HD4SPG7R?trackAsin=B0HD3YTGD7", "apple": "https://music.apple.com/us/album/6798492335?i=6798492339", "youtube": "https://www.youtube.com/watch?v=AFW6UFAqVDs", "d": 356}, "40": {"spotify": "https://open.spotify.com/track/6gtQQRXNBPsmina2tA4mEo", "amazon": "https://music.amazon.com/albums/B0HD4SPG7R?trackAsin=B0HD4BWD4Z", "apple": "https://music.apple.com/us/album/6798492335?i=6798492705", "youtube": "https://www.youtube.com/watch?v=0XhKNqi7Ba4", "d": 348}, "42": {"spotify": "https://open.spotify.com/track/0bZW5pIqp7X7G0JRJzaWnS", "amazon": "https://music.amazon.com/albums/B0HDMSF6NH?trackAsin=B0HDMTVMSN", "apple": "https://music.apple.com/us/album/6799796992?i=6799796994", "youtube": "https://www.youtube.com/watch?v=O30OKeOymH4", "d": 315}, "56": {"spotify": "https://open.spotify.com/track/6iR8GWfOApjC6L8GF7w4F0", "amazon": "https://music.amazon.com/albums/B0HHH19S74?trackAsin=B0HHHFPNCN", "apple": "https://music.apple.com/us/album/6807662142?i=6807662691", "youtube": "https://www.youtube.com/watch?v=oR9Fo9gyfoE", "d": 180}, "61": {"spotify": "https://open.spotify.com/track/0jIt2wUtb8R0l5vScmlF2q", "amazon": "https://music.amazon.com/albums/B0HJ3ZWPCY?trackAsin=B0HJ412GK7", "apple": "https://music.apple.com/us/album/6809248777?i=6809248778", "youtube": "https://www.youtube.com/watch?v=Hm_Wf5iLRTg", "d": 214}, "62": {"spotify": "https://open.spotify.com/track/4Bl6FiEXcMK2O1RKSlaiq4", "amazon": "https://music.amazon.com/albums/B0HJ3ZWPCY?trackAsin=B0HJ4224DG", "apple": "https://music.apple.com/us/album/6809248777?i=6809248779", "youtube": "https://www.youtube.com/watch?v=0yylamUzSyk", "d": 210}, "63": {"spotify": "https://open.spotify.com/track/5PQPFXB2wkQpc4GdR136la", "amazon": "https://music.amazon.com/albums/B0HJ3ZWPCY?trackAsin=B0HJ476NTV", "apple": "https://music.apple.com/us/album/6809248777?i=6809248780", "youtube": "https://www.youtube.com/watch?v=m5MECaPnUQo", "d": 153}, "71": {"spotify": "https://open.spotify.com/track/4ay9pRdPgmO5rr3KZycRzu", "amazon": "https://music.amazon.com/albums/B0HJSPXQH5?trackAsin=B0HJSPYZ42", "apple": "https://music.apple.com/us/album/6812048474?i=6812048475", "youtube": "https://www.youtube.com/watch?v=5okGUTmfHZY", "d": 345}, "85": {"spotify": "https://open.spotify.com/track/6EKFalT9gMzHHiPW9DWlhI", "amazon": "https://music.amazon.com/albums/B0HKH357R6?trackAsin=B0HKGT7FFL", "apple": "https://music.apple.com/us/album/6814352263?i=6814352268", "youtube": "https://www.youtube.com/watch?v=V95pJuIeouw", "d": 189}, "86": {"spotify": "https://open.spotify.com/track/6UGNSJgTPHt182PS1kZQby", "amazon": "https://music.amazon.com/albums/B0HKH357R6?trackAsin=B0HKGXP51Y", "apple": "https://music.apple.com/us/album/6814352263?i=6814352269", "youtube": "https://www.youtube.com/watch?v=hTXvuYyUVZA", "d": 300}, "91": {"spotify": "https://open.spotify.com/track/0fTihhG7PPg2izhsaOXV3Z", "amazon": "https://music.amazon.com/albums/B0HLRX53Q4?trackAsin=B0HLRF1TCP", "apple": "https://music.apple.com/us/album/6818507252?i=6818507253", "youtube": "https://www.youtube.com/watch?v=uHYyMC8zizs", "d": 258}, "92": {"spotify": "https://open.spotify.com/track/2eF2DyhEoqspqquNvde8Nb", "amazon": "https://music.amazon.com/albums/B0HLRX53Q4?trackAsin=B0HLRT5JBX", "apple": "https://music.apple.com/us/album/6818507252?i=6818507254", "youtube": "https://www.youtube.com/watch?v=VVZw-0M1E7E", "d": 184}, "95": {"spotify": "https://open.spotify.com/track/7swIvWYoCYqCsGBlADOPu2", "amazon": "https://music.amazon.com/albums/B0HLRX53Q4?trackAsin=B0HLRRWCFS", "apple": "https://music.apple.com/us/album/6818507252?i=6818507257", "youtube": "https://www.youtube.com/watch?v=xzDy5HID8RI", "d": 197}, "100": {"spotify": "https://open.spotify.com/track/23euh2Wu0cxwfTb2o4nu6B", "amazon": "https://music.amazon.com/albums/B0HLRX53Q4?trackAsin=B0HLRNYJBJ", "apple": "https://music.apple.com/us/album/6818507252?i=6818507682", "youtube": "https://www.youtube.com/watch?v=w8WXX1yuWGM", "d": 153}, "103": {"spotify": "https://open.spotify.com/track/05Cf1tQmFX9BHad0xFcKjR", "amazon": "https://music.amazon.com/albums/B0HMG7RBWR?trackAsin=B0HMG225Y6", "apple": "https://music.apple.com/us/album/6821176670?i=6821176885", "youtube": "https://www.youtube.com/watch?v=s-cu2Z9avgs", "d": 354}, "107": {"spotify": "https://open.spotify.com/track/2xYEhgn8p6QMXvqExpiQsz", "amazon": "https://music.amazon.com/albums/B0HMG7RBWR?trackAsin=B0HMFT2N7Y", "apple": "https://music.apple.com/us/album/6821176670?i=6821176889", "youtube": "https://www.youtube.com/watch?v=K5nW4Sj2sZI", "d": 471}, "111": {"spotify": "https://open.spotify.com/track/6UuPlTtH2497j5vG7YNpbI", "amazon": "https://music.amazon.com/albums/B0HNF6KHX4?trackAsin=B0HNF1B55T", "apple": "https://music.apple.com/us/album/6824066534?i=6824066535", "youtube": "https://www.youtube.com/watch?v=rCpFrF0qPQA", "d": 143}, "117": {"spotify": "https://open.spotify.com/track/4VNDmE7AVFwfMBj2mTle2i", "amazon": "https://music.amazon.com/albums/B0HNF6KHX4?trackAsin=B0HNFDBXD2", "apple": "https://music.apple.com/us/album/6824066534?i=6824066797", "youtube": "https://www.youtube.com/watch?v=3jqjId8HqVU", "d": 94}, "118": {"spotify": "https://open.spotify.com/track/3gJVoYUzt47eMH38fYyMjX", "amazon": "https://music.amazon.com/albums/B0HNF6KHX4?trackAsin=B0HNF7DHLR", "apple": "https://music.apple.com/us/album/6824066534?i=6824066798", "youtube": "https://www.youtube.com/watch?v=SKgKk1yw3vY", "d": 308}, "121": {"spotify": "https://open.spotify.com/track/4XjE4YJpgt1wBH0hdQ3QLU", "amazon": "https://music.amazon.com/albums/B0HRHGB2KX?trackAsin=B0HRHJRMSL", "apple": "https://music.apple.com/us/album/6834067501?i=6834067502", "youtube": "https://www.youtube.com/watch?v=PuDTR7--iJI", "d": 163}, "125": {"spotify": "https://open.spotify.com/track/4Vkgq4FsYCufUyBkyc7XFM", "amazon": "https://music.amazon.com/albums/B0HRHGB2KX?trackAsin=B0HRHTBVQN", "apple": "https://music.apple.com/us/album/6834067501?i=6834067506", "youtube": "https://www.youtube.com/watch?v=CkLaSW98Q8o", "d": 89}, "126": {"spotify": "https://open.spotify.com/track/77SJzJnyamT0ajxhhxB9pT", "amazon": "https://music.amazon.com/albums/B0HRHGB2KX?trackAsin=B0HRHY346Y", "apple": "https://music.apple.com/us/album/6834067501?i=6834067507", "youtube": "https://www.youtube.com/watch?v=OxQ4vr8YIw4", "d": 164}, "127": {"spotify": "https://open.spotify.com/track/4N4ZYT0e8K02rEDhATjxmn", "amazon": "https://music.amazon.com/albums/B0HRHGB2KX?trackAsin=B0HRHJN2BK", "apple": "https://music.apple.com/us/album/6834067501?i=6834067508", "youtube": "https://www.youtube.com/watch?v=o76IfPchGhQ", "d": 73}}, "T": {"paz": ["Peace", [[23, 121], [85, 62], [127, 125], [63, 3]]], "fuerza": ["Strength", [[27, 28], [31, 20], [2, 15], [18, 61]]], "gratitud": ["Gratitude", [[103, 34], [107, 111], [117, 92], [95, 118]]], "consuelo": ["Comfort", [[42, 40], [30, 16], [126, 71], [56, 86]]]}};
+const BASE=[1,100,91], NOCHE=4;
+const PLAT={spotify:'Spotify',amazon:'Amazon',apple:'Apple Music',youtube:'YouTube'};
+const INTRO={1:'Your challenge starts today! 🙌 For 28 days you will listen to, sing and hide the Psalms in your heart.',
+  8:'Week 2 begins! Psalms 1, 100 and 91 are already starting to stay with you.',
+  15:'Week 3! You’re already halfway there.',
+  22:'Final week! You’re very close to knowing Psalms 1, 100 and 91 by heart.',
+  28:'Today is your last day! 🎉 Look how far you’ve come.'};
+const INSIGNIA={7:'Psalm 1',14:'Psalm 100',21:'Psalm 91'};
+const WHY='Close your eyes and connect: no images, only His Word, sung. As the Bible teaches us: “Thou shalt not make unto thee any graven image, or any likeness of any thing that is in heaven above, or that is in the earth beneath” (Exodus 20:4). Listen to the Psalm and let Him speak to your heart.';
+const SHARE='https://wa.me/?text='+encodeURIComponent('I’m doing the 28-day challenge with the sung Psalms of Amen Hallelujah Official. It’s free, join me: https://amenhallelujahofficial.github.io/en/challenge.html');
+
+const q=new URLSearchParams(location.search);
+const dia=parseInt(q.get('d'),10), tema=q.get('t'), op=parseInt(q.get('o'),10), plat=q.get('p');
+const C=document.getElementById('c');
+const esc=s=>String(s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+
+function count(path,title){ // GoatCounter, sin datos personales
+  const go=()=>{try{window.goatcounter.count({path,title,event:true})}catch(e){}};
+  if(window.goatcounter&&window.goatcounter.count) go(); else window.addEventListener('load',()=>setTimeout(go,300));
+}
+const store={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},
+             set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+
+if(!(dia>=1&&dia<=28)||!DATA.T[tema]||![3,5,7].includes(op)||!PLAT[plat]){
+  C.innerHTML='<div class="err"><p class="kicker">28-Day Challenge</p><h1>We couldn’t find your day</h1><p>Open the link from your Challenge email, or start the challenge here.</p><a class="wa" style="background:var(--gold);color:var(--ink)" href="challenge.html">Go to the 28-Day Challenge</a></div>';
+} else {
+  const sem=Math.min(4,Math.floor((dia-1)/7)+1);
+  const [nombre,semanas]=DATA.T[tema];
+  const pasos=BASE.map(s=>[s,'Every day']);
+  if(op>=5) semanas[sem-1].forEach(s=>pasos.push([s,'Your theme: '+nombre]));
+  if(op>=7){ pasos.push([sem===1?semanas[0][0]:semanas[sem-2][0],'Review']); pasos.push([NOCHE,'Before bed']); }
+  const KEY='en-day-'+dia+'-'+tema+'-'+op;
+  const st=store.get(KEY)||{done:[],pend:null};
+  let toast='';
+  let intro=INTRO[dia]||'';
+  if(INSIGNIA[dia]) intro='It’s badge day 🏅: do you know '+INSIGNIA[dia]+' yet? Sing it without looking.';
+  count('/en/challenge/day-'+dia,'Challenge EN · opens Day '+dia);
+
+  function completar(i){
+    if(!st.done.includes(i)) st.done.push(i);
+    st.pend=null; store.set(KEY,st);
+    const sig=pasos.findIndex((_,k)=>!st.done.includes(k));
+    if(sig<0){
+      toast='<div class="toast final" role="status"><b>You’ve completed Day '+dia+'! 🙌</b>'+(dia<28?'Your Day '+(dia+1)+' arrives tomorrow':'')+'</div>';
+      count('/en/challenge/day-'+dia+'-complete','Challenge EN · completes Day '+dia);
+    } else {
+      toast='<div class="toast" role="status"><b>Congratulations! 🎉</b> You’ve completed Step '+(i+1)+'. Next up, Step '+(sig+1)+': Psalm '+pasos[sig][0]+'</div>';
+    }
+    pintar(); window.scrollTo({top:0,behavior:'smooth'});
+  }
+  function volver(){ // al volver de la plataforma
+    if(!st.pend||st.done.includes(st.pend.i)) return;
+    const dur=(DATA.L[pasos[st.pend.i][0]].d||180)*1000;
+    if(Date.now()-st.pend.t>=dur*0.8) completar(st.pend.i); else { st.pend.ask=true; store.set(KEY,st); pintar(); }
+  }
+  function pintar(){
+    const n=st.done.length, tot=pasos.length, sig=pasos.findIndex((_,k)=>!st.done.includes(k));
+    let h='<p class="kicker">28-Day Challenge · Week '+sem+'</p><h1>Day '+dia+' of 28</h1>';
+    if(intro) h+='<p class="lead">'+esc(intro)+'</p>';
+    h+='<p class="lead">🙏 <b>Close your eyes and connect.</b> Your Psalms for today:</p>';
+    h+='<div class="bar" aria-hidden="true"><i style="width:'+(100*n/tot)+'%"></i></div><p class="count">'+n+' of '+tot+' steps</p>';
+    h+=toast+'<ol class="steps">';
+    pasos.forEach(([s,et],i)=>{
+      const d=st.done.includes(i), cls=d?'done':(i===sig?'next':'');
+      h+='<li class="step '+cls+'"><div class="row"><span class="num">'+(d?'✓':i+1)+'</span><div class="txt"><b>Step '+(i+1)+' · Psalm '+s+'</b><small>'+esc(et)+'</small></div>'+
+         '<a class="play" data-i="'+i+'" href="'+esc(DATA.L[s][plat])+'" target="_blank" rel="noopener">▶ '+PLAT[plat]+'</a></div>';
+      if(!d&&st.pend&&st.pend.i===i&&st.pend.ask) h+='<div class="ask">Did you listen to it?<br><button class="yes" data-y="'+i+'">✓ Yes</button><button class="no" data-n="'+i+'">Not yet</button></div>';
+      h+='</li>';
+    });
+    h+='</ol><div class="extra">';
+    h+='<p>You can also ask Alexa: <b>“Alexa, play Psalm 91 by Amen Hallelujah Official”</b>.</p>';
+    h+='<p>🙌 <b>Give thanks:</b> think of one thing you’re thankful for today.</p>';
+    h+='<div><p>💌 <b>Share it:</b> invite someone to do the challenge with you.</p><a class="wa" id="wa" href="'+SHARE+'" target="_blank" rel="noopener">💬 Share on WhatsApp</a></div>';
+    h+='</div><p class="why"><b>Why are there no videos?</b><br>'+esc(WHY)+'</p>';
+    C.innerHTML=h;
+    C.querySelectorAll('.play').forEach(a=>a.onclick=()=>{const i=+a.dataset.i; if(!st.done.includes(i)){st.pend={i,t:Date.now()}; store.set(KEY,st);} toast=''; });
+    C.querySelectorAll('[data-y]').forEach(b=>b.onclick=()=>completar(+b.dataset.y));
+    C.querySelectorAll('[data-n]').forEach(b=>b.onclick=()=>{st.pend=null; store.set(KEY,st); pintar();});
+    const wa=document.getElementById('wa'); if(wa) wa.onclick=()=>count('/en/challenge/share-whatsapp','Challenge EN · shares on WhatsApp');
+  }
+  pintar();
+  document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='visible') volver(); });
+  window.addEventListener('pageshow',e=>{ if(e.persisted) volver(); });
+  volver(); // por si el navegador recargó la página al volver
+}
+</script>
+</body>
+</html>

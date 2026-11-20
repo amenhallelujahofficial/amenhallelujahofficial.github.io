@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unsubscribe – Amen Hallelujah Official</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../img/favicon.png">
+<link rel="stylesheet" href="../style.css">
+<style>.box{max-width:520px;margin:0 auto;padding:40px 16px 60px}.box h1{font-size:28px}.box input{width:100%;box-sizing:border-box;padding:12px;border-radius:10px;border:1px solid #a8862f;font-size:16px;margin:10px 0}.box button{padding:12px 24px;border-radius:30px;border:2px solid #a8862f;background:#C9A24A;color:#15110b;font-weight:bold;font-size:16px;cursor:pointer}#msg{margin-top:14px}</style>
+</head>
+<body class="en">
+<header><div class="wrap bar"><a class="brand" href="index.html"><img src="../img/logo.png" alt="Amen Hallelujah Official logo"><span>Amen Hallelujah Official</span></a></div></header>
+<main class="box">
+<h1>Unsubscribe</h1>
+<p>Enter your email and you will stop receiving the 28-Day Psalms Challenge emails. The Psalms will always stay free on your favorite platform.</p>
+<input id="email" type="email" placeholder="you@email.com" autocomplete="email">
+<button id="go">Unsubscribe</button>
+<p id="msg"></p>
+<p style="margin-top:30px"><a href="index.html">← Back to the website</a></p>
+</main>
+<script>
+const GFORM='https://docs.google.com/forms/d/e/1FAIpQLScQvVuO0JqtifhEsv135nQCHbzzHKF2f4W307s6mJjmcW_k1A/formResponse', GFIELD='entry.875086947';
+document.getElementById('go').onclick=()=>{
+  const e=document.getElementById('email').value.trim(), m=document.getElementById('msg');
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)){ m.textContent='Please enter a valid email.'; return; }
+  const fd=new FormData(); fd.append(GFIELD,['v1','baja',e.replace(/[|\n]/g,' ')].join('|'));
+  fetch(GFORM,{method:'POST',mode:'no-cors',body:fd}).then(()=>{ m.textContent='Done. Within a day you will stop receiving our emails. God bless you.'; })
+    .catch(()=>{ m.textContent='No connection. Please try again in a moment.'; });
+};
+</script>
+</body>
+</html>
