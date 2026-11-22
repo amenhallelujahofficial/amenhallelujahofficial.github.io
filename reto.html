@@ -208,6 +208,12 @@ function dayNum(){ if(!S.start) return 0; const s=new Date(S.start+'T00:00:00');
 
 // Enlace para grupos e iglesias: ?inicio=AAAA-MM-DD hace que todos empiecen el mismo día
 try{ const p=new URLSearchParams(location.search).get('inicio'); if(p && /^\d{4}-\d{2}-\d{2}$/.test(p)){ S.groupStart=p; } }catch(e){}
+// Enlace del recordatorio del calendario: ?r=INICIO.tema.tiempo.plataforma.HHMM abre el día del reto en cualquier navegador
+try{ const r=new URLSearchParams(location.search).get('r');
+  const m=r&&r.match(/^(\d{4}-\d{2}-\d{2})\.(paz|fuerza|gratitud|consuelo)\.(3|5|7)\.(youtube|spotify|apple|amazon)(?:\.(\d{4}))?$/);
+  if(m && !S.start){ S.start=m[1]; S.answers=Object.assign({},S.answers,{busca:m[2],tiempo:m[3],plataforma:m[4]});
+    if(m[5]) S.answers.hora=m[5].slice(0,2)+':'+m[5].slice(2); save(); } }catch(e){}
+function planLink(){ const a=S.answers||{}; return WEB+'?r='+[S.start||iso(today()), a.busca||'paz', a.tiempo||'3', a.plataforma||'youtube', (a.hora||'07:00').replace(':','')].join('.'); }
 
 /* ===================== PREGUNTAS ===================== */
 const QS = [
@@ -381,10 +387,10 @@ function reminders(){
   </div>`;
 }
 function wireReminders(){
-  const h=(S.answers.hora||'07:00').replace(':',''), st=(S.groupStart||iso(today())).replace(/-/g,'');
+  const h=(S.answers.hora||'07:00').replace(':',''), st=(S.start||S.groupStart||iso(today())).replace(/-/g,'');
   const end = String(Number(h)+10).padStart(4,'0');
   let tz='America/Mexico_City'; try{ tz=Intl.DateTimeFormat().resolvedOptions().timeZone||tz; }catch(e){}
-  const title='Tu Salmo del día · Reto de 28 días', det='Abre tu día del reto: '+WEB;
+  const title='Tu Salmo del día · Reto de 28 días', det='Abre tu día del reto: '+planLink();
   document.getElementById('gcal').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(title)+
     '&details='+encodeURIComponent(det)+'&dates='+st+'T'+h+'00/'+st+'T'+end+'00&ctz='+encodeURIComponent(tz)+'&recur='+encodeURIComponent('RRULE:FREQ=DAILY;COUNT=28');
   document.getElementById('gcal').addEventListener('click',()=>{ try{ window.goatcounter&&goatcounter.count({path:'reto-calendario-google',title:'Reto · añade a Google Calendar',event:true}); }catch(_){} });
@@ -392,7 +398,7 @@ function wireReminders(){
     try{ window.goatcounter&&goatcounter.count({path:'reto-calendario-iphone',title:'Reto · añade a iPhone / otro calendario',event:true}); }catch(_){}
     const ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Amen Hallelujah Official//Reto 28//ES','BEGIN:VEVENT','UID:reto28-'+st+'@amenhallelujahofficial',
       'DTSTAMP:'+new Date().toISOString().replace(/[-:]/g,'').split('.')[0]+'Z','DTSTART:'+st+'T'+h+'00','DURATION:PT10M','RRULE:FREQ=DAILY;COUNT=28',
-      'SUMMARY:'+title,'DESCRIPTION:'+det,'URL:'+WEB,'BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:'+title,'TRIGGER:PT0M','END:VALARM','END:VEVENT','END:VCALENDAR'].join('\r\n');
+      'SUMMARY:'+title,'DESCRIPTION:'+det,'URL:'+planLink(),'BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:'+title,'TRIGGER:PT0M','END:VALARM','END:VEVENT','END:VCALENDAR'].join('\r\n');
     try{ const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'})); a.download='reto-28-dias-salmos.ics'; a.click(); }catch(e){}
     document.getElementById('icsmsg').hidden=false;
   };
