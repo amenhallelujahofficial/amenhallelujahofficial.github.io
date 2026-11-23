@@ -267,7 +267,7 @@ function home(){
     <p class="verse center">«La fe viene por el oír, y el oír por la palabra de Dios»<small>Romanos 10:17</small></p>
     <h1>28 días para acercarte a Dios</h1>
     <span class="free">cantando los Salmos · gratis, para todos</span>
-    <p class="lead">Unos minutos al día para escuchar, cantar y guardar los Salmos en tu corazón. Empieza cuando quieras: tu Día 1 lo eliges tú.</p>
+    <p class="lead">Unos minutos al día para escuchar, cantar y guardar los Salmos en tu corazón. ${(S.groupStart&&S.groupStart>iso(today()))?'Empezamos todos juntos el <b>'+fechaLarga(S.groupStart)+'</b>. Apúntate hoy y ese día te llegará tu Día 1.':'Empieza cuando quieras: tu Día 1 lo eliges tú.'}</p>
   </section>
   <h3 class="sec">Lo que vas a conseguir:</h3>
   <ul class="bens">
@@ -410,14 +410,16 @@ function wireReminders(){
     enviarEmail(e);
   };
 }
+function fechaLarga(s){ try{ return new Date(s+'T12:00:00').toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long'}).replace(',',''); }catch(e){ return s; } }
 function enviarEmail(e){
   const m=document.getElementById('emmsg'), b=document.getElementById('em'); m.hidden=false;
   b.disabled=true; m.className='pending'; m.textContent='Enviando…';
   const a=S.answers, clean=x=>String(x||'').replace(/[|\n]/g,' ');
-  const datos=['v1','alta',e,a.busca,a.tiempo,a.plataforma,a.hora,a.con].map(clean).join('|');
+  const fut=(S.groupStart && S.groupStart>iso(today()))?S.groupStart:'';
+  const datos=['v1','alta',e,a.busca,a.tiempo,a.plataforma,a.hora,a.con].map(clean).concat(fut?['inicio='+fut]:[]).join('|');
   const fd=new FormData(); fd.append(GFIELD,datos);
   return fetch(GFORM,{method:'POST',mode:'no-cors',body:fd}).then(()=>{
-    S.email=e; save(); m.className='ok'; m.textContent='¡Listo! Hoy mismo te llegará tu Día 1 a '+e+'. Si no lo ves, mira en Promociones o Spam.';
+    S.email=e; save(); m.className='ok'; m.textContent=(fut?'¡Listo! Tu Día 1 te llegará el '+fechaLarga(fut)+' a ':'¡Listo! Hoy mismo te llegará tu Día 1 a ')+e+'. Si no lo ves, mira en Promociones o Spam.';
     try{ window.goatcounter&&goatcounter.count({path:'reto-email-ok',event:true}); }catch(_){}
     return true;
   }).catch(()=>{ b.disabled=false; m.className='pending'; m.textContent='No hay conexión. Inténtalo de nuevo en un momento.'; return false; });
@@ -426,7 +428,7 @@ function enviarEmail(e){
 function dayView(){
   const today_n = dayNum();
   if(today_n<1){ // grupo que empieza más adelante
-    render(`<div class="center"><h2>Tu reto empieza el ${S.start}</h2><p class="lead">Te esperamos ese día con tu Día 1.</p></div>`); return;
+    render(`<div class="center"><h2>Tu reto empieza el ${fechaLarga(S.start)}</h2><p class="lead">Te esperamos ese día con tu Día 1.</p></div>`); return;
   }
   const cur = Math.min(28, today_n);
   const day = selDay && selDay<=cur ? selDay : cur;
